@@ -20,7 +20,7 @@ class MapController: UIViewController, CLLocationManagerDelegate {
     
     var corporations: [Corporation] = [] {
         didSet {
-            
+            mapView.map.addAnnotations(corporations)
         }
     }
     var emergencies: [Emergency] = []

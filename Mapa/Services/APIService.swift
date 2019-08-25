@@ -82,7 +82,20 @@ class APIService: NSObject {
     // Create the corporation entity from json
     private func jsonToCorp(jsonData: [String: AnyObject]) -> NSManagedObject? {
         let context = CoreDataStack.sharedInstance.persistentContainer.viewContext
-        let id = jsonData["idCorp"] as! Int
+        /* There is an error in API
+         
+         Policia Federal and Heroico Cuerpo de Bomberos have the same idCorp
+         Policia Federal id will be changed to 6 in order to the error to disappear
+         
+         */
+        let name = jsonData["name"] as! String
+        var id: Int!
+        if name != "Policia Federal" {
+            id = jsonData["idCorp"] as! Int
+        }else{
+            id = 6
+        }
+        
         
         // Check if corporation already exists
         if let corp = corporationExists(context: context, id: id) {
@@ -91,7 +104,7 @@ class APIService: NSObject {
             // it doesn't exist, save it to CoreData
             if let corpEntity = NSEntityDescription.insertNewObject(forEntityName: "Corporation", into: context) as? Corporation {
                 corpEntity.id = Int32(id)
-                corpEntity.name = jsonData["name"] as? String
+                corpEntity.name = name
                 corpEntity.desc = jsonData["description"] as? String
                 corpEntity.logoURL = jsonData["logo"] as? String
                 corpEntity.coord = jsonData["coordinates"] as? String
