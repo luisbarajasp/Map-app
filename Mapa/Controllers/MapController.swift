@@ -42,11 +42,13 @@ class MapController: UIViewController, CLLocationManagerDelegate {
     }
     var destinationCoordinates: CLLocationCoordinate2D?
     
-    var placemarks: [CLLocationCoordinate2D] = [] {
-        didSet {
-//            mapView.createMapPlacemarks(placemarks)
-        }
-    }
+    let backgroundStatuBarView: UIView = {
+        let view = UIView()
+        view.backgroundColor = .white
+        return view
+    }()
+    
+    let mapNavBar = MapNavBar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,6 +91,12 @@ class MapController: UIViewController, CLLocationManagerDelegate {
     func setUpViews() {
         view.addSubview(mapView)
         mapView.fillSuperview()
+        
+        view.addSubview(backgroundStatuBarView)
+        backgroundStatuBarView.anchor(top: view.topAnchor, leading: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.topAnchor, trailing: view.trailingAnchor)
+        
+        view.addSubview(mapNavBar)
+        mapNavBar.anchor(top: view.safeAreaLayoutGuide.topAnchor, leading: view.leadingAnchor, bottom: nil, trailing: view.trailingAnchor, size: CGSize(width: 0, height: 60))
     }
     
     // MARK: - clearData from CoreData for debugging

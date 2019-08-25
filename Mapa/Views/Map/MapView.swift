@@ -46,12 +46,12 @@ class MapView: UIView, MKMapViewDelegate {
     
     // MARK: - Map View Delegate Methods
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
-        
         // If it the user locatioin return the default
-        if annotation === mapView.userLocation {
+        if annotation is MKUserLocation {
             return nil
         }
+        
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
         
         if annotationView == nil {
             annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "pin")
@@ -65,7 +65,13 @@ class MapView: UIView, MKMapViewDelegate {
                     if error != nil {
                         print("ERROR LOADING IMAGES FROM URL: \(String(describing: error))")
                         DispatchQueue.main.async {
-                            annotationView!.image = UIImage(named: "pin")
+                            let pinImage = UIImage(named: "pin")
+                            let size = CGSize(width: 50, height: 50)
+                            UIGraphicsBeginImageContext(size)
+                            pinImage!.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                            let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                            
+                            annotationView?.image = resizedImage
                         }
                         return
                     }
@@ -73,7 +79,12 @@ class MapView: UIView, MKMapViewDelegate {
                         if let data = data {
                             if let downloadedImage = UIImage(data: data) {
                                 imageCache.setObject(downloadedImage, forKey: NSString(string: corpAnnotation.logoURL!))
-                                annotationView!.image = downloadedImage
+                                let size = CGSize(width: 50, height: 50)
+                                UIGraphicsBeginImageContext(size)
+                                downloadedImage.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+                                let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
+                                
+                                annotationView?.image = resizedImage
                             }
                         }
                     }
@@ -81,9 +92,14 @@ class MapView: UIView, MKMapViewDelegate {
             }
         }
         
-        annotationView?.canShowCallout = true
+//        annotationView?.canShowCallout = true
+//        annotationView?.calloutOffset = CGPoint(x: -8, y: 0)
         
         return annotationView
+        
+    }
+    
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         
     }
 }

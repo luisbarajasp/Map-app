@@ -22,6 +22,7 @@
 		A00F08CC2313106300920559 /* Corporation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08CA2313106300920559 /* Corporation+CoreDataProperties.swift */; };
 		A00F08CF231317BC00920559 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08CE231317BC00920559 /* MapView.swift */; };
 		A00F08D12313180700920559 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08D02313180700920559 /* Extensions.swift */; };
+		A00F08D7231337EF00920559 /* MapNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08D6231337EF00920559 /* MapNavBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		A00F08CA2313106300920559 /* Corporation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Corporation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		A00F08CE231317BC00920559 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A00F08D02313180700920559 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		A00F08D6231337EF00920559 /* MapNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavBar.swift; sourceTree = "<group>"; };
 		F40C20014DE97B74C709A1CC /* Pods_Mapa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mapa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				A00F08CE231317BC00920559 /* MapView.swift */,
+				A00F08D6231337EF00920559 /* MapNavBar.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A00F08A62313062900920559 /* MapController.swift in Sources */,
+				A00F08D7231337EF00920559 /* MapNavBar.swift in Sources */,
 				A00F08C423130A7700920559 /* Emergency+CoreDataProperties.swift in Sources */,
 				A00F08A42313062900920559 /* AppDelegate.swift in Sources */,
 				A00F08CC2313106300920559 /* Corporation+CoreDataProperties.swift in Sources */,
