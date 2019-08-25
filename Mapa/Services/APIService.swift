@@ -91,7 +91,7 @@ class APIService: NSObject {
         let name = jsonData["name"] as! String
         var id: Int!
         if name != "Policia Federal" {
-            id = jsonData["idCorp"] as! Int
+            id = jsonData["idCorp"] as? Int
         }else{
             id = 6
         }

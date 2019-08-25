@@ -43,4 +43,47 @@ class MapView: UIView, MKMapViewDelegate {
         let coordinateRegion = MKCoordinateRegion(center: location.coordinate, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
         map.setRegion(coordinateRegion, animated: true)
     }
+    
+    // MARK: - Map View Delegate Methods
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "pin")
+        
+        // If it the user locatioin return the default
+        if annotation === mapView.userLocation {
+            return nil
+        }
+        
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: "pin")
+        }
+        
+        // Download corporation image from logo url
+        if let corpAnnotation = annotation as? Corporation, corpAnnotation.logoURL != nil {
+            if let url = URL(string: corpAnnotation.logoURL!) {
+                URLSession.shared.dataTask(with: url, completionHandler: { (data, response, error) in
+                    //print("RESPONSE FROM API: \(response)")
+                    if error != nil {
+                        print("ERROR LOADING IMAGES FROM URL: \(String(describing: error))")
+                        DispatchQueue.main.async {
+                            annotationView!.image = UIImage(named: "pin")
+                        }
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        if let data = data {
+                            if let downloadedImage = UIImage(data: data) {
+                                imageCache.setObject(downloadedImage, forKey: NSString(string: corpAnnotation.logoURL!))
+                                annotationView!.image = downloadedImage
+                            }
+                        }
+                    }
+                }).resume()
+            }
+        }
+        
+        annotationView?.canShowCallout = true
+        
+        return annotationView
+        
+    }
 }
