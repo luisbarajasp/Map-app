@@ -15,6 +15,11 @@
 		A00F08AE2313062B00920559 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A00F08AD2313062B00920559 /* Assets.xcassets */; };
 		A00F08B12313062B00920559 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A00F08AF2313062B00920559 /* LaunchScreen.storyboard */; };
 		A00F08BE2313074D00920559 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08BD2313074D00920559 /* CoreDataStack.swift */; };
+		A00F08C323130A7700920559 /* Emergency+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08BF23130A7700920559 /* Emergency+CoreDataClass.swift */; };
+		A00F08C423130A7700920559 /* Emergency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08C023130A7700920559 /* Emergency+CoreDataProperties.swift */; };
+		A00F08C823130B2300920559 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08C723130B2300920559 /* APIService.swift */; };
+		A00F08CB2313106300920559 /* Corporation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08C92313106300920559 /* Corporation+CoreDataClass.swift */; };
+		A00F08CC2313106300920559 /* Corporation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08CA2313106300920559 /* Corporation+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +34,11 @@
 		A00F08B02313062B00920559 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A00F08B22313062B00920559 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A00F08BD2313074D00920559 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		A00F08BF23130A7700920559 /* Emergency+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Emergency+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A00F08C023130A7700920559 /* Emergency+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Emergency+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A00F08C723130B2300920559 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
+		A00F08C92313106300920559 /* Corporation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Corporation+CoreDataClass.swift"; sourceTree = "<group>"; };
+		A00F08CA2313106300920559 /* Corporation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Corporation+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F40C20014DE97B74C709A1CC /* Pods_Mapa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mapa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -100,6 +110,10 @@
 		A00F08B8231306F600920559 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				A00F08C92313106300920559 /* Corporation+CoreDataClass.swift */,
+				A00F08CA2313106300920559 /* Corporation+CoreDataProperties.swift */,
+				A00F08BF23130A7700920559 /* Emergency+CoreDataClass.swift */,
+				A00F08C023130A7700920559 /* Emergency+CoreDataProperties.swift */,
 				A00F08BD2313074D00920559 /* CoreDataStack.swift */,
 			);
 			path = Models;
@@ -130,6 +144,7 @@
 		A00F08BC2313072100920559 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				A00F08C723130B2300920559 /* APIService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -255,9 +270,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A00F08A62313062900920559 /* MapController.swift in Sources */,
+				A00F08C423130A7700920559 /* Emergency+CoreDataProperties.swift in Sources */,
 				A00F08A42313062900920559 /* AppDelegate.swift in Sources */,
+				A00F08CC2313106300920559 /* Corporation+CoreDataProperties.swift in Sources */,
+				A00F08CB2313106300920559 /* Corporation+CoreDataClass.swift in Sources */,
 				A00F08AC2313062900920559 /* Mapa.xcdatamodeld in Sources */,
+				A00F08C323130A7700920559 /* Emergency+CoreDataClass.swift in Sources */,
 				A00F08BE2313074D00920559 /* CoreDataStack.swift in Sources */,
+				A00F08C823130B2300920559 /* APIService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
