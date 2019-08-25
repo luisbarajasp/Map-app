@@ -20,6 +20,8 @@
 		A00F08C823130B2300920559 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08C723130B2300920559 /* APIService.swift */; };
 		A00F08CB2313106300920559 /* Corporation+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08C92313106300920559 /* Corporation+CoreDataClass.swift */; };
 		A00F08CC2313106300920559 /* Corporation+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08CA2313106300920559 /* Corporation+CoreDataProperties.swift */; };
+		A00F08CF231317BC00920559 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08CE231317BC00920559 /* MapView.swift */; };
+		A00F08D12313180700920559 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08D02313180700920559 /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -39,6 +41,8 @@
 		A00F08C723130B2300920559 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		A00F08C92313106300920559 /* Corporation+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Corporation+CoreDataClass.swift"; sourceTree = "<group>"; };
 		A00F08CA2313106300920559 /* Corporation+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Corporation+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		A00F08CE231317BC00920559 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		A00F08D02313180700920559 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		F40C20014DE97B74C709A1CC /* Pods_Mapa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mapa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -122,6 +126,7 @@
 		A00F08B9231306FC00920559 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A00F08CD231317A700920559 /* Map */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -137,6 +142,7 @@
 		A00F08BB2313070700920559 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				A00F08D02313180700920559 /* Extensions.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -147,6 +153,14 @@
 				A00F08C723130B2300920559 /* APIService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		A00F08CD231317A700920559 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				A00F08CE231317BC00920559 /* MapView.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -276,7 +290,9 @@
 				A00F08CB2313106300920559 /* Corporation+CoreDataClass.swift in Sources */,
 				A00F08AC2313062900920559 /* Mapa.xcdatamodeld in Sources */,
 				A00F08C323130A7700920559 /* Emergency+CoreDataClass.swift in Sources */,
+				A00F08CF231317BC00920559 /* MapView.swift in Sources */,
 				A00F08BE2313074D00920559 /* CoreDataStack.swift in Sources */,
+				A00F08D12313180700920559 /* Extensions.swift in Sources */,
 				A00F08C823130B2300920559 /* APIService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

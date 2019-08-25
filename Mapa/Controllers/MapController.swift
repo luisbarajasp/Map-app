@@ -8,29 +8,59 @@
 
 import UIKit
 import CoreData
+import CoreLocation
+import MapKit
 
-class MapController: UIViewController {
+class MapController: UIViewController, CLLocationManagerDelegate {
     
     let apiService: APIService = {
         let service = APIService()
         return service
     }()
     
-    var corporations: [Corporation] = []
+    var corporations: [Corporation] = [] {
+        didSet {
+            
+        }
+    }
     var emergencies: [Emergency] = []
-
+    
+    lazy var mapView: MapView = {
+        let mapView = MapView()
+        mapView.controller = self
+        return mapView
+    }()
+    
+    var locationManager: CLLocationManager!
+    var sourceLocation: CLLocation? {
+        didSet{
+            
+            if let location = sourceLocation {
+                mapView.centerMapOnLocation(location: location)
+            }
+        }
+    }
+    var destinationCoordinates: CLLocationCoordinate2D?
+    
+    var placemarks: [CLLocationCoordinate2D] = [] {
+        didSet {
+//            mapView.createMapPlacemarks(placemarks)
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        view.backgroundColor = .red
         
 //        clearEmergencies()
 //        clearCorporations()
         
-        fetchCorporations()
+        fetchData()
+        setUplocationManager()
+        setUpViews()
     }
     
-    func fetchCorporations() {
+    func fetchData() {
         apiService.fetchData { (objects) in
             if objects != nil && objects!.count > 1 {
                 if let corporations = objects![0] as? [Corporation] {
@@ -41,6 +71,24 @@ class MapController: UIViewController {
                 }
             }
         }
+    }
+    
+    func setUplocationManager() {
+        if locationManager == nil {
+            locationManager = CLLocationManager()
+        }
+        locationManager.requestAlwaysAuthorization()
+        locationManager.requestWhenInUseAuthorization()
+        if (CLLocationManager.locationServicesEnabled()) {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+        }
+        
+    }
+    
+    func setUpViews() {
+        view.addSubview(mapView)
+        mapView.fillSuperview()
     }
     
     // MARK: - clearData from CoreData for debugging
@@ -69,6 +117,22 @@ class MapController: UIViewController {
             } catch let error {
                 print("ERROR DELETING : \(error)")
             }
+        }
+    }
+    
+    // MARK: - LocationManager Delegate Methods
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        sourceLocation = locations.last
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        switch(CLLocationManager.authorizationStatus()) {
+        case .authorizedAlways, .authorizedWhenInUse:
+            locationManager.startUpdatingLocation()
+        case .denied, .notDetermined, .restricted:
+            locationManager.stopUpdatingLocation()
+        @unknown default:
+            break;
         }
     }
 

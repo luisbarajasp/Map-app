@@ -121,6 +121,8 @@ class APIService: NSObject {
                 emergencyEntity.date = jsonData["date"] as? String
                 emergencyEntity.place = jsonData["place"] as? String
                 
+                
+                
                 return emergencyEntity
             }
         }
