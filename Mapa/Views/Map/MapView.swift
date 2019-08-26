@@ -126,6 +126,7 @@ class MapView: UIView, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        self.controller?.showSpinner(onView: self)
         if let corp = view.annotation as? Corporation {
             
             if let sourceCoord = controller?.sourceLocation?.coordinate,
@@ -158,6 +159,8 @@ class MapView: UIView, MKMapViewDelegate {
                     coordinateRegion.span.latitudeDelta *= 2
                     coordinateRegion.span.longitudeDelta *= 1.3
                     self.map.setRegion(coordinateRegion, animated: true)
+                    
+                    self.controller?.removeSpinner()
                     
                 }
                 
