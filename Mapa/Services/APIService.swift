@@ -134,7 +134,10 @@ class APIService: NSObject {
                 emergencyEntity.date = jsonData["date"] as? String
                 emergencyEntity.place = jsonData["place"] as? String
                 
-                
+                // Add to corporation relation
+                if let corporation = corporationExists(context: context, id: idCorp) {
+                    corporation.addToEmergencies(emergencyEntity)
+                }
                 
                 return emergencyEntity
             }

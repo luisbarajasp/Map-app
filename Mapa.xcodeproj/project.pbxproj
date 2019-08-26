@@ -24,6 +24,9 @@
 		A00F08D12313180700920559 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08D02313180700920559 /* Extensions.swift */; };
 		A00F08D7231337EF00920559 /* MapNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08D6231337EF00920559 /* MapNavBar.swift */; };
 		A00F08D923133BE400920559 /* CorporationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08D823133BE400920559 /* CorporationInfoView.swift */; };
+		A00F08DB23136DCF00920559 /* CorporationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08DA23136DCF00920559 /* CorporationController.swift */; };
+		A00F08DE23136F3E00920559 /* CorporationNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08DD23136F3E00920559 /* CorporationNavBar.swift */; };
+		A00F08E0231374B500920559 /* EmergencyCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08DF231374B500920559 /* EmergencyCollectionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +50,9 @@
 		A00F08D02313180700920559 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A00F08D6231337EF00920559 /* MapNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavBar.swift; sourceTree = "<group>"; };
 		A00F08D823133BE400920559 /* CorporationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorporationInfoView.swift; sourceTree = "<group>"; };
+		A00F08DA23136DCF00920559 /* CorporationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorporationController.swift; sourceTree = "<group>"; };
+		A00F08DD23136F3E00920559 /* CorporationNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorporationNavBar.swift; sourceTree = "<group>"; };
+		A00F08DF231374B500920559 /* EmergencyCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmergencyCollectionCell.swift; sourceTree = "<group>"; };
 		F40C20014DE97B74C709A1CC /* Pods_Mapa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mapa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -130,6 +136,7 @@
 		A00F08B9231306FC00920559 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				A00F08DC23136DD300920559 /* Corporation */,
 				A00F08CD231317A700920559 /* Map */,
 			);
 			path = Views;
@@ -139,6 +146,7 @@
 			isa = PBXGroup;
 			children = (
 				A00F08A52313062900920559 /* MapController.swift */,
+				A00F08DA23136DCF00920559 /* CorporationController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -167,6 +175,15 @@
 				A00F08D823133BE400920559 /* CorporationInfoView.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		A00F08DC23136DD300920559 /* Corporation */ = {
+			isa = PBXGroup;
+			children = (
+				A00F08DD23136F3E00920559 /* CorporationNavBar.swift */,
+				A00F08DF231374B500920559 /* EmergencyCollectionCell.swift */,
+			);
+			path = Corporation;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -289,12 +306,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A00F08DE23136F3E00920559 /* CorporationNavBar.swift in Sources */,
 				A00F08A62313062900920559 /* MapController.swift in Sources */,
 				A00F08D7231337EF00920559 /* MapNavBar.swift in Sources */,
+				A00F08E0231374B500920559 /* EmergencyCollectionCell.swift in Sources */,
 				A00F08C423130A7700920559 /* Emergency+CoreDataProperties.swift in Sources */,
 				A00F08A42313062900920559 /* AppDelegate.swift in Sources */,
 				A00F08CC2313106300920559 /* Corporation+CoreDataProperties.swift in Sources */,
 				A00F08CB2313106300920559 /* Corporation+CoreDataClass.swift in Sources */,
+				A00F08DB23136DCF00920559 /* CorporationController.swift in Sources */,
 				A00F08AC2313062900920559 /* Mapa.xcdatamodeld in Sources */,
 				A00F08C323130A7700920559 /* Emergency+CoreDataClass.swift in Sources */,
 				A00F08D923133BE400920559 /* CorporationInfoView.swift in Sources */,

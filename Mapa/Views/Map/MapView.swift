@@ -39,7 +39,7 @@ class MapView: UIView, MKMapViewDelegate {
     
     var distance: CLLocationDistance? {
         didSet {
-            corporationInfoView.distance = Int(self.distance!).stringFromDistance()
+            corporationInfoView.distance = Float(self.distance!).stringFromDistance()
         }
     }
     

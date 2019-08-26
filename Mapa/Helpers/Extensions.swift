@@ -126,17 +126,22 @@ extension TimeInterval{
     }
 }
 
-extension Int {
+extension Float {
     func stringFromDistance() -> String {
         if self > 999 {
             // kilometers
             let numberFormatter = NumberFormatter()
             numberFormatter.numberStyle = .decimal
-            return "\(numberFormatter.string(from: NSNumber(value: self / 1000))!) km"
+            return "\(numberFormatter.string(from: NSNumber(value: (self / 1000).rounded(toPlaces: 1)))!) km"
         }else{
             // meters
-            return "\(String(describing: self)) metros"
+            return "\(String(describing: Int(self))) metros"
         }
+    }
+    
+    func rounded(toPlaces places:Int) -> Float {
+        let divisor = pow(10.0, Float(places))
+        return (self * divisor).rounded() / divisor
     }
 }
 

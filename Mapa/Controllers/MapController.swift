@@ -54,8 +54,8 @@ class MapController: UIViewController, CLLocationManagerDelegate {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
         
-//        clearEmergencies()
-//        clearCorporations()
+        clearEmergencies()
+        clearCorporations()
         
         fetchData()
         setUplocationManager()
@@ -68,7 +68,7 @@ class MapController: UIViewController, CLLocationManagerDelegate {
                 if let corporations = objects![0] as? [Corporation] {
                     self.corporations = corporations
                 }
-                if let emergencies = objects![0] as? [Emergency] {
+                if let emergencies = objects![1] as? [Emergency] {
                     self.emergencies = emergencies
                 }
             }
@@ -135,7 +135,10 @@ class MapController: UIViewController, CLLocationManagerDelegate {
     }
     
     func presentCorporationController(corporation: Corporation) {
-        print(corporation)
+        let corporationController = CorporationController()
+        corporationController.corporation = corporation
+        
+        navigationController?.pushViewController(corporationController, animated: true)
     }
     
     // MARK: - LocationManager Delegate Methods
