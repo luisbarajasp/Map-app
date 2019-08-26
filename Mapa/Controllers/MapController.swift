@@ -128,6 +128,12 @@ class MapController: UIViewController, CLLocationManagerDelegate {
         }
     }
     
+    // MARK: - Callbacks
+    func cancelCorporationPressed() {
+        mapView.isShowingInfo = false
+        mapView.hideCorporationInfo(corporation: nil)
+    }
+    
     // MARK: - LocationManager Delegate Methods
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         sourceLocation = locations.last

@@ -12,7 +12,11 @@ import CoreLocation
 
 class MapView: UIView, MKMapViewDelegate {
     
-    var controller: MapController!
+    var controller: MapController? {
+        didSet {
+            corporationInfoView.controller = controller
+        }
+    }
     
     let regionRadius: CLLocationDistance = 1000
     
@@ -20,9 +24,17 @@ class MapView: UIView, MKMapViewDelegate {
         let map = MKMapView()
         map.delegate = self
         map.showsScale = true
-//        map.showsPointsOfInterest = true
         map.showsUserLocation = true
         return map
+    }()
+    
+    var isShowingInfo = false
+    var corporationTopConstraint: NSLayoutConstraint!
+    
+    lazy var corporationInfoView: CorporationInfoView = {
+        let view = CorporationInfoView()
+        view.controller = self.controller
+        return view
     }()
     
     override init(frame: CGRect) {
@@ -37,6 +49,11 @@ class MapView: UIView, MKMapViewDelegate {
     func setUpViews() {
         addSubview(map)
         map.fillSuperview()
+        
+        addSubview(corporationInfoView)
+        corporationTopConstraint = corporationInfoView.topAnchor.constraint(equalTo: bottomAnchor)
+        corporationTopConstraint.isActive = true
+        corporationInfoView.anchor(top: nil, leading: leadingAnchor, bottom: nil, trailing: trailingAnchor, size: CGSize(width: 0, height: 200))
     }
     
     func centerMapOnLocation(location: CLLocation) {
@@ -92,14 +109,85 @@ class MapView: UIView, MKMapViewDelegate {
             }
         }
         
-//        annotationView?.canShowCallout = true
-//        annotationView?.calloutOffset = CGPoint(x: -8, y: 0)
-        
         return annotationView
         
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        if let corp = view.annotation as? Corporation {
+            
+            if let sourceCoord = controller?.sourceLocation?.coordinate,
+                let destCoord = view.annotation?.coordinate {
+                
+                let sourceItem = MKMapItem(placemark: MKPlacemark(coordinate: sourceCoord))
+                let destItem = MKMapItem(placemark: MKPlacemark(coordinate: destCoord))
+                
+                let directionRequest = MKDirections.Request()
+                directionRequest.source = sourceItem
+                directionRequest.destination = destItem
+                directionRequest.transportType = .automobile
+                
+                _ = MKDirections(request: directionRequest).calculate { (response, error) in
+                    guard let response = response else {
+                        if let error = error {
+                            print(error.localizedDescription)
+                        }
+                        return
+                    }
+                    
+                    let route = response.routes[0]
+                    self.map.addOverlay(route.polyline, level: .aboveRoads)
+                    
+                    let rekt = route.polyline.boundingMapRect
+                    self.map.setRegion(MKCoordinateRegion(rekt), animated: true)
+                }
+                
+                if isShowingInfo {
+                    hideCorporationInfo(corporation: corp)
+                }else{
+                    showCorporationInfo(corporation: corp)
+                }
+            }
+            
+            
+            
+        }
+        mapView.deselectAnnotation(view.annotation, animated: false)
+    }
+    
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+        let renderer = MKPolylineRenderer(overlay: overlay)
+        renderer.strokeColor = UIColor(red: 241, green: 169, blue: 49)
+        renderer.lineWidth = 5.0
         
+        return renderer
+    }
+    
+    // MARK: - Corporation info view methods
+    func showCorporationInfo(corporation: Corporation) {
+        corporationInfoView.corporation = corporation
+        isShowingInfo = true
+        corporationTopConstraint.constant = -200
+        UIView.animate(withDuration: 0.5, animations: {
+            
+            self.layoutIfNeeded()
+            
+        })
+    }
+    
+    func hideCorporationInfo(corporation: Corporation?) {
+        corporationTopConstraint.constant = 0
+        map.removeOverlays(map.overlays)
+        if let location = controller?.sourceLocation {
+            centerMapOnLocation(location: location)
+        }
+        
+        UIView.animate(withDuration: 0.5, animations: {
+            self.layoutIfNeeded()
+        }) { (completed) in
+            if completed && self.isShowingInfo && corporation != nil{
+                self.showCorporationInfo(corporation: corporation!)
+            }
+        }
     }
 }

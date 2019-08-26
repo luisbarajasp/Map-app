@@ -23,6 +23,7 @@
 		A00F08CF231317BC00920559 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08CE231317BC00920559 /* MapView.swift */; };
 		A00F08D12313180700920559 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08D02313180700920559 /* Extensions.swift */; };
 		A00F08D7231337EF00920559 /* MapNavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08D6231337EF00920559 /* MapNavBar.swift */; };
+		A00F08D923133BE400920559 /* CorporationInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A00F08D823133BE400920559 /* CorporationInfoView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		A00F08CE231317BC00920559 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		A00F08D02313180700920559 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A00F08D6231337EF00920559 /* MapNavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapNavBar.swift; sourceTree = "<group>"; };
+		A00F08D823133BE400920559 /* CorporationInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorporationInfoView.swift; sourceTree = "<group>"; };
 		F40C20014DE97B74C709A1CC /* Pods_Mapa.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Mapa.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 			children = (
 				A00F08CE231317BC00920559 /* MapView.swift */,
 				A00F08D6231337EF00920559 /* MapNavBar.swift */,
+				A00F08D823133BE400920559 /* CorporationInfoView.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				A00F08CB2313106300920559 /* Corporation+CoreDataClass.swift in Sources */,
 				A00F08AC2313062900920559 /* Mapa.xcdatamodeld in Sources */,
 				A00F08C323130A7700920559 /* Emergency+CoreDataClass.swift in Sources */,
+				A00F08D923133BE400920559 /* CorporationInfoView.swift in Sources */,
 				A00F08CF231317BC00920559 /* MapView.swift in Sources */,
 				A00F08BE2313074D00920559 /* CoreDataStack.swift in Sources */,
 				A00F08D12313180700920559 /* Extensions.swift in Sources */,
