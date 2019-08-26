@@ -98,3 +98,45 @@ extension UIImageView {
     }
 }
 
+extension TimeInterval{
+    
+    func stringFromTimeInterval() -> String {
+        
+        let time = NSInteger(self)
+        
+//        let ms = Int((self.truncatingRemainder(dividingBy: 1)) * 1000)
+//        let seconds = time % 60
+        let minutes = (time / 60) % 60
+        let hours = (time / 3600)
+        var stringF = ""
+        
+        if hours > 0 {
+            
+            stringF += hours > 0 ? "\(hours) hours " : ""
+            stringF += minutes > 0 ? "\(minutes) minutes " : ""
+            
+            return stringF
+        }else if minutes > 0 {
+            stringF += minutes > 0 ? "\(minutes) minutes " : ""
+            return stringF
+        }else{
+            return "1 minute"
+        }
+        
+    }
+}
+
+extension Int {
+    func stringFromDistance() -> String {
+        if self > 999 {
+            // kilometers
+            let numberFormatter = NumberFormatter()
+            numberFormatter.numberStyle = .decimal
+            return "\(numberFormatter.string(from: NSNumber(value: self / 1000))!) km"
+        }else{
+            // meters
+            return "\(String(describing: self)) metros"
+        }
+    }
+}
+

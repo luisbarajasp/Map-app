@@ -37,6 +37,18 @@ class MapView: UIView, MKMapViewDelegate {
         return view
     }()
     
+    var distance: CLLocationDistance? {
+        didSet {
+            corporationInfoView.distance = Int(self.distance!).stringFromDistance()
+        }
+    }
+    
+    var eta: TimeInterval? {
+        didSet {
+            corporationInfoView.eta = self.eta?.stringFromTimeInterval()
+        }
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setUpViews()
@@ -126,6 +138,7 @@ class MapView: UIView, MKMapViewDelegate {
                 directionRequest.source = sourceItem
                 directionRequest.destination = destItem
                 directionRequest.transportType = .automobile
+                directionRequest.requestsAlternateRoutes = false
                 
                 _ = MKDirections(request: directionRequest).calculate { (response, error) in
                     guard let response = response else {
@@ -136,17 +149,24 @@ class MapView: UIView, MKMapViewDelegate {
                     }
                     
                     let route = response.routes[0]
+                    self.eta = route.expectedTravelTime
+                    self.distance = route.distance
                     self.map.addOverlay(route.polyline, level: .aboveRoads)
                     
                     let rekt = route.polyline.boundingMapRect
-                    self.map.setRegion(MKCoordinateRegion(rekt), animated: true)
+                    var coordinateRegion = MKCoordinateRegion(rekt)
+                    coordinateRegion.span.latitudeDelta *= 2
+                    coordinateRegion.span.longitudeDelta *= 1.3
+                    self.map.setRegion(coordinateRegion, animated: true)
+                    
                 }
                 
-                if isShowingInfo {
-                    hideCorporationInfo(corporation: corp)
+                if self.isShowingInfo {
+                    self.hideCorporationInfo(corporation: corp)
                 }else{
-                    showCorporationInfo(corporation: corp)
+                    self.showCorporationInfo(corporation: corp)
                 }
+                
             }
             
             
@@ -178,15 +198,18 @@ class MapView: UIView, MKMapViewDelegate {
     func hideCorporationInfo(corporation: Corporation?) {
         corporationTopConstraint.constant = 0
         map.removeOverlays(map.overlays)
-        if let location = controller?.sourceLocation {
-            centerMapOnLocation(location: location)
-        }
         
         UIView.animate(withDuration: 0.5, animations: {
             self.layoutIfNeeded()
         }) { (completed) in
-            if completed && self.isShowingInfo && corporation != nil{
-                self.showCorporationInfo(corporation: corporation!)
+            if completed {
+                if self.isShowingInfo && corporation != nil{
+                    self.showCorporationInfo(corporation: corporation!)
+                }else{
+                    if let location = self.controller?.sourceLocation {
+                        self.centerMapOnLocation(location: location)
+                    }
+                }
             }
         }
     }

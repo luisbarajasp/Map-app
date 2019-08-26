@@ -134,6 +134,10 @@ class MapController: UIViewController, CLLocationManagerDelegate {
         mapView.hideCorporationInfo(corporation: nil)
     }
     
+    func presentCorporationController(corporation: Corporation) {
+        print(corporation)
+    }
+    
     // MARK: - LocationManager Delegate Methods
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         sourceLocation = locations.last
